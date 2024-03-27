@@ -117,4 +117,38 @@
         return false;
       }
     }
+
+    public function updateCredits($data){
+      if($data['transaction_type'] == 'pay_in'){
+        //if users add funds
+        $this->db->query('UPDATE users SET credits = credits + :additional_credits, pay_in = pay_in + :additional_credits WHERE id = :user_id'); 
+        
+        //bind values
+        $this->db->bind(':additional_credits', $data['credits_amount']);
+        $this->db->bind(':user_id', $_SESSION['user_id']);
+        
+        if($this->db->execute()){
+          
+        }else{
+          return false;
+        }
+      }else{
+        //if users withdraw funds
+        
+      }
+
+      //get user credits after query was executed
+      $this->db->query('SELECT credits FROM users where id = :user_id');
+
+      //bind values
+      $this->db->bind(':user_id', $_SESSION['user_id']);
+
+      //retuern user data
+      $row = $this->db->single();
+
+      return $row;
+    }
+
+    
+
   }

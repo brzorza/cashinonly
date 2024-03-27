@@ -10,7 +10,7 @@
         // Process form
 
         // Sanitize POST data
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
 
         // Init data
         $data =[
@@ -93,12 +93,65 @@
       }
     }
 
+    public function add_credits(){
+      if(!isLoggedIn()){
+        redirect('users/login');
+      }
+
+      if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        //sanitaze data
+        $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
+
+        //init data
+        $data = [
+          'credits_amount' => trim($_POST['credits']),
+          'transaction_type' => 'pay_in',
+          'credits_amount_err' => ''
+        ];
+
+        //validating $data
+        if(empty($data['credits_amount'])){
+          $data['credits_amount_err'] = 'Please specify amount that you want to add (from 1 to 100)';
+        }elseif($data['credits_amount'] > 100 || $data['credits_amount'] < 0){
+          $data['credits_amount_err'] = 'Invalid amount try between 1 and 100 :D';          
+        }
+
+        //make sure no errors occured
+        if(empty($data['credits_amount_err'])){
+
+          //perform credits addition 
+          if($credits = $this->userModel->updateCredits($data)){
+            
+          }else{
+            die('Something went wrong!');
+          }
+
+          //reset credists $_SESSION variable to new one
+          unset($_SESSION['credits']);
+          $_SESSION['credits'] = $credits->credits;
+
+          //set flash message
+          flash('credits_added_success', $data['credits_amount'] . 'cr added successfuly!', 'alert alert-success');
+            
+          //return to add credits page with success message
+          $this->view('users/add_credits');
+
+        }else{
+          //return to page with errors to be display
+          $this->view('users/add_credits', $data);
+        }
+
+      }else{
+        $this->view('users/add_credits');
+      }
+    }
+
     public function login(){
       // Check for POST
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // Process form
         // Sanitize POST data
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
         
         // Init data
         $data =[
@@ -323,4 +376,6 @@
         return false;
       }
     }
+
+
   }

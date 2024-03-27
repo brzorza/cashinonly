@@ -59,7 +59,7 @@ use function PHPSTORM_META\type;
                     }else{
                         flash('gamable_outcome', 'You have choose ' . $data['chosen_number'] . ' and dice roll was ' . $data['random_number'] . ' :) Congratulations!', 'alert alert-success');
                         $data['win'] = true;
-                        $data['amount_won'] = $data['amount'] * 3;
+                        $data['amount_won'] = $data['amount'] * 2.71;
                     }
 
                     //add / reduce funds from user credits
