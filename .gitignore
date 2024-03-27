@@ -1,0 +1,5 @@
+# Ignore config file
+app/config/config.php
+
+# Ignore users profile pics 
+public/img/users_profile_pics/

@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Quicksand:wght@300..700&display=swap');
+
+:root {
+    --blue-color: #12b0db;
+    --red-color: #d90019;
+  }
+
+body{
+    font-family: Quicksand;
+    background-color: #313131;
+}
+
+.admin-color{
+    background: -webkit-linear-gradient(45deg, #1cb0ff, #1fff62);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.user-color{
+    color: lightblue
+}
+
+/* NAVBAR */
+.d-inline{
+    display: inline-block;
+}
+
+.navbar-user-logo{
+    height: auto;
+    width: 35px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* USER PROFILE */
+.left-profile-border{
+    border-radius: 20px 0 0 20px;
+}
+.right-profile-border{
+    border-radius: 0 20px 20px 0 ;
+}
+.btn-edit{
+    text-transform: uppercase;
+    color: #fff;
+    background-color: var(--blue-color);
+}
+.btn-delete{
+    text-transform: uppercase;
+    color: #fff;
+    background-color: var(--red-color);
+}
+.profile-pic{
+    max-width: 300px;
+    width: auto;
+    border-radius: 50%;
+    border: 3px solid lime;
+}
+.profile-table th{
+    border-top: 0;
+    border-bottom: 1px solid white;
+}
+
+.pill-red{
+    padding: 5px 20px !important;
+    background-color: var(--red-color);
+    border-radius: 30px;
+}
+.pill-blue{
+    padding: 5px 30px !important;
+    background-color: var(--blue-color);
+    border-radius: 30px;
+}
+
+/* Choose Games page */
+.games-card {
+    width: 85%;
+    border-radius: 24px;
+}
+
+.games-card img {
+    border-radius: 10px 10px 0 0;
+}
