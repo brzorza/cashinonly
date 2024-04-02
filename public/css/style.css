@@ -3,7 +3,7 @@
 :root {
     --blue-color: #12b0db;
     --red-color: #d90019;
-  }
+}
 
 body{
     font-family: Quicksand;
@@ -18,6 +18,10 @@ body{
 }
 .user-color{
     color: lightblue
+}
+
+.hidden-input{
+    visibility: hidden;
 }
 
 /* NAVBAR */
@@ -69,6 +73,12 @@ body{
     padding: 5px 30px !important;
     background-color: var(--blue-color);
     border-radius: 30px;
+}
+.total-positive{
+    background-color: #a2ff9680;
+}
+.total-negative{
+    background-color: #ff372880;
 }
 
 /* Choose Games page */

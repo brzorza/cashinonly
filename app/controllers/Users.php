@@ -93,6 +93,8 @@
       }
     }
 
+
+    //This handles adding and subtracting
     public function add_credits(){
       if(!isLoggedIn()){
         redirect('users/login');
@@ -105,19 +107,30 @@
         //init data
         $data = [
           'credits_amount' => trim($_POST['credits']),
-          'transaction_type' => 'pay_in',
-          'credits_amount_err' => ''
+          'transaction_type' => trim($_POST['type']),
+          'credits_amount_err' => '',
+          'transaction_type_err' => ''
         ];
 
         //validating $data
-        if(empty($data['credits_amount'])){
-          $data['credits_amount_err'] = 'Please specify amount that you want to add (from 1 to 100)';
-        }elseif($data['credits_amount'] > 100 || $data['credits_amount'] < 0){
-          $data['credits_amount_err'] = 'Invalid amount try between 1 and 100 :D';          
+        if($data['transaction_type'] == 'pay_in'){
+          if(empty($data['credits_amount'])){
+            $data['credits_amount_err'] = 'Please specify amount that you want to add (from 1 to 100)';
+          }elseif($data['credits_amount'] > 100 || $data['credits_amount'] < 0){
+            $data['credits_amount_err'] = 'Invalid amount try between 1 and 100 :D';          
+          }
+        }elseif($data['transaction_type'] == 'pay_out'){
+          if(empty($data['credits_amount'])){
+            $data['credits_amount_err'] = 'Please specify amount that you want to payout (from 1 to 100)';
+          }elseif($data['credits_amount'] > $_SESSION['credits'] || $data['credits_amount'] < 0){
+            $data['credits_amount_err'] = 'Invalid amount try withing your current credits range!';          
+          }
+        }else{
+          $data['transaction_type_err'] = 'Why would you ever modify transaction type?';
         }
 
         //make sure no errors occured
-        if(empty($data['credits_amount_err'])){
+        if(empty($data['credits_amount_err']) && empty($data['transaction_type_err'])){
 
           //perform credits addition 
           if($credits = $this->userModel->updateCredits($data)){
@@ -131,7 +144,11 @@
           $_SESSION['credits'] = $credits->credits;
 
           //set flash message
-          flash('credits_added_success', $data['credits_amount'] . 'cr added successfuly!', 'alert alert-success');
+          if($data['transaction_type'] == 'pay_in'){
+            flash('credits_added_success', $data['credits_amount'] . 'cr added successfuly!', 'alert alert-success');
+          }else{
+            flash('credits_subtracted_success', $data['credits_amount'] . 'cr payed out successfuly!', 'alert alert-success');
+          }
             
           //return to add credits page with success message
           $this->view('users/add_credits');
@@ -218,9 +235,20 @@
         //render logged in user profile
         $data = [
           'name' => $_SESSION['user_name'],
-          'email' => $_SESSION['user_email']
+          'email' => $_SESSION['user_email'],
+          'pay_in' => '???',
+          'pay_out' => '???',
+          'total' => 0
         ];
-  
+
+        $userInfo = $this->userModel->getUserInfo();
+        
+        if(!empty($userInfo)){
+          $data['pay_in'] = $userInfo->pay_in;
+          $data['pay_out'] = $userInfo->pay_out;
+          $data['total'] = $data['pay_out'] - $data['pay_in'];
+        }
+
         $this->view('users/profile', $data);
         
       }else{

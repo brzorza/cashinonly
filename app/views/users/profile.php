@@ -3,12 +3,12 @@
     <!-- IF USER IS LOGGED IN -->
     <div class="container">
         <div class="row no-gutters ">
-            <div class="col-4 bg-dark text-center left-profile-border">
+            <div class="col-3 bg-dark text-center left-profile-border">
                 <div class="m-5">
                     <img class="profile-pic" src="../img/brzorza_profile_pic.jpg" alt="profile picture">
                 </div>
             </div>
-            <div class="col-8 bg-dark text-left text-white right-profile-border">
+            <div class="col-4 bg-dark text-left text-white right-profile-border">
                 <div class="m-5">
                     <table class="table profile-table">
                         <tr>
@@ -31,6 +31,24 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-5 bg-dark text-left text-white">
+                <div class="m-5">
+                        <table class="table profile-table">
+                            <tr>
+                                <th><strong>Payed In</strong></th>
+                                <th><?php echo $data['pay_in'] ?>cr</th>
+                            </tr>
+                            <tr>
+                                <th><strong>Payed Out</strong></th>
+                                <th><?php echo $data['pay_out'] ?>cr</th>
+                            </tr>
+                            <tr>
+                                <th class="<?php echo ($data['total'])>0 ? 'total-positive' : 'total-negative'; ?>"><strong>Total</strong></th>
+                                <th class="<?php echo ($data['total'])>0 ? 'total-positive' : 'total-negative'; ?>"><?php echo $data['total'] ?>cr</th>
+                            </tr>
+                        </table>
+                    </div>
             </div>
         </div>
     </div>

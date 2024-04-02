@@ -6,6 +6,23 @@
       $this->db = new Database;
     }
 
+    //get needed user info
+    public function getUserInfo(){
+      //make query
+      $this->db->query('SELECT pay_in, pay_out FROM users WHERE id = :id');
+      
+      //bind values
+      $this->db->bind(':id', $_SESSION['user_id']);
+
+      $row = $this->db->single();
+
+      if(!empty($row)){
+        return $row;
+      }else{
+        return false;
+      }
+    }
+
     // Regsiter user
     public function register($data){
       $this->db->query('INSERT INTO users (name, email, password) VALUES(:name, :email, :password)');
@@ -118,6 +135,8 @@
       }
     }
 
+    //$data['transaction_type']  str 'pay_in' or 'pay_out'
+    //$data['credits_amount']    int
     public function updateCredits($data){
       if($data['transaction_type'] == 'pay_in'){
         //if users add funds
@@ -132,9 +151,19 @@
         }else{
           return false;
         }
-      }else{
-        //if users withdraw funds
+      }elseif($data['transaction_type'] == 'pay_out'){
+        //if users pays out funds
+        $this->db->query('UPDATE users SET credits = credits - :additional_credits, pay_out = pay_out + :additional_credits WHERE id = :user_id'); 
         
+        //bind values
+        $this->db->bind(':additional_credits', $data['credits_amount']);
+        $this->db->bind(':user_id', $_SESSION['user_id']);
+        
+        if($this->db->execute()){
+          
+        }else{
+          return false;
+        }
       }
 
       //get user credits after query was executed
