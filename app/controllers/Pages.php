@@ -17,7 +17,7 @@
     public function about(){
       $data = [
         'title' => 'About Us',
-        'description' => 'App to share posts with other users'
+        'description' => 'Fake casino like app'
       ];
 
       $this->view('pages/about', $data);

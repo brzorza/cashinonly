@@ -54,7 +54,7 @@ body{
     background-color: var(--red-color);
 }
 .profile-pic{
-    max-width: 300px;
+    width: 300px;
     width: auto;
     border-radius: 50%;
     border: 3px solid lime;
