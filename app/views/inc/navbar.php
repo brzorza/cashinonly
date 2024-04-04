@@ -8,13 +8,16 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo URLROOT; ?>/pages/about">About</a>
+            <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/pages/about') ? 'currently-chosen' : '' ?>" href="<?php echo URLROOT; ?>/pages/about">About</a>
           </li>
           <?php if(isset($_SESSION['user_id'])) : ?>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo URLROOT; ?>/games">Games</a>
+            <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/games') ? 'currently-chosen' : '' ?>" href="<?php echo URLROOT; ?>/games">Games</a>
           </li>
           <?php endif;?>
+          <li class="nav-item">
+            <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/scoreboards') ? 'currently-chosen' : '' ?>" href="<?php echo URLROOT; ?>/scoreboards">Scoreboard</a>
+          </li>
         </ul>
         
         <ul class="navbar-nav ml-auto">

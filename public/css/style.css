@@ -3,6 +3,7 @@
 :root {
     --blue-color: #12b0db;
     --red-color: #d90019;
+    --mint-color: #aaf0d1;
 }
 
 body{
@@ -36,12 +37,19 @@ body{
     display: inline-block;
 }
 
+.currently-chosen{
+    color:var(--mint-color) !important;
+}
+
 /* USER PROFILE */
+.top-profile-border{
+    border-radius: 20px 20px 0 0;
+}
 .left-profile-border{
-    border-radius: 20px 0 0 20px;
+    border-radius: 0 0 0 20px;
 }
 .right-profile-border{
-    border-radius: 0 20px 20px 0 ;
+    border-radius: 0 0 20px 0;
 }
 .btn-edit{
     text-transform: uppercase;
@@ -54,10 +62,10 @@ body{
     background-color: var(--red-color);
 }
 .profile-pic{
-    width: 300px;
-    width: auto;
+    width: 150px;
+    height: auto;
     border-radius: 50%;
-    border: 3px solid lime;
+    border: 3px solid var(--mint-color);
 }
 .profile-table th{
     border-top: 0;
@@ -83,10 +91,25 @@ body{
 
 /* Choose Games page */
 .games-card {
+    position: relative;
     width: 85%;
     border-radius: 24px;
+    border: 2px solid white;
 }
 
 .games-card img {
-    border-radius: 10px 10px 0 0;
+    border-radius: 24px 24px 0 0;
+}
+
+.games-cover-title{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.games-cover-link{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

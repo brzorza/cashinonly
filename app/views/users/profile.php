@@ -3,12 +3,12 @@
     <!-- IF USER IS LOGGED IN -->
     <div class="container">
         <div class="row no-gutters ">
-            <div class="col-12 bg-dark text-center left-profile-border">
+            <div class="col-12 bg-dark text-center top-profile-border">
                 <div class="m-5">
                     <img class="profile-pic" src="../img/users_profile_pics/brzorza_profile_pic.jpg" alt="profile picture">
                 </div>
             </div>
-            <div class="col-7 bg-dark text-left text-white right-profile-border">
+            <div class="col-7 bg-dark text-left text-white left-profile-border">
                 <div class="m-5">
                     <table class="table profile-table">
                         <tr>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-5 bg-dark text-left text-white">
+            <div class="col-5 bg-dark text-left text-white right-profile-border">
                 <div class="m-5">
                         <table class="table profile-table">
                             <tr>
