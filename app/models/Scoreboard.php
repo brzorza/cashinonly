@@ -7,7 +7,7 @@ class Scoreboard{
 
     public function getHighScores(){
     
-        $this->db->query('SELECT name, pay_in, pay_out FROM users');
+        $this->db->query('SELECT name, pay_in, pay_out FROM users ORDER BY total DESC');
 
         $row = $this->db->resultSet();
 

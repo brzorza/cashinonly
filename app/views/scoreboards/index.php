@@ -1,7 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
   <div class="text-white">
 
-      <h1 class="text-center">Scoreboard</h1>
+      <h1 class="text-center my-5">Scoreboard</h1>
     
       <table class="table table-striped table-bordered table-hover">
         <thead class="thead-dark">

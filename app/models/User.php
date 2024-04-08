@@ -147,7 +147,21 @@
         $this->db->bind(':user_id', $_SESSION['user_id']);
         
         if($this->db->execute()){
-          
+          //query info to use for user total creds update
+          $this->db->query('SELECT pay_in, pay_out FROM users WHERE id = :user_id');
+
+          $this->db->bind(':user_id', $_SESSION['user_id']);
+
+          $credits_info = $this->db->single();
+
+          // count user creds to get totla
+          $total = $credits_info->pay_out - $credits_info->pay_in;
+
+          //update db with new total value
+          $this->db->query('UPDATE users SET total = :total WHERE id = :user_id');
+          $this->db->bind(':total', $total);
+          $this->db->bind(':user_id', $_SESSION['user_id']);
+          $this->db->execute();
         }else{
           return false;
         }
@@ -160,7 +174,21 @@
         $this->db->bind(':user_id', $_SESSION['user_id']);
         
         if($this->db->execute()){
-          
+          //query info to use for user total creds update
+          $this->db->query('SELECT pay_in, pay_out FROM users WHERE id = :user_id');
+
+          $this->db->bind(':user_id', $_SESSION['user_id']);
+
+          $credits_info = $this->db->single();
+
+          // count user creds to get totla
+          $total = $credits_info->pay_out - $credits_info->pay_in;
+
+          //update db with new total value
+          $this->db->query('UPDATE users SET total = :total');
+          $this->db->bind(':total', $total);
+          $this->db->execute();
+
         }else{
           return false;
         }
