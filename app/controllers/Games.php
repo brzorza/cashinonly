@@ -35,7 +35,6 @@ use function PHPSTORM_META\type;
                     'amount_err' => '',
                     'chosen_number_err' => '',
                     'random_number' => '',
-                    'amount_won' => ''
                 ];
 
                 //validate chosen_number
@@ -59,7 +58,6 @@ use function PHPSTORM_META\type;
                     }else{
                         flash('gamable_outcome', 'You have choose ' . $data['chosen_number'] . ' and dice roll was ' . $data['random_number'] . ' :) Congratulations!', 'alert alert-success');
                         $data['win'] = true;
-                        $data['amount_won'] = $data['amount'] * 5;
                     }
 
                     //add / reduce funds from user credits

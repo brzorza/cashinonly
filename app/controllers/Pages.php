@@ -1,16 +1,15 @@
 <?php
   class Pages extends Controller {
     public function __construct(){
-     
     }
     
     public function index(){
       $data = [
         'title' => 'CAShINOnly',
-        'description' => 'Where you can either send us some money or lose it all :)',
+        'description' => 'Place where you can either send us some money or lose it all :)',
         'description-down' => 'At least you will have some fun!'
       ];
-     
+
       $this->view('pages/index', $data);
     }
 
