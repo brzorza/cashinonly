@@ -44,13 +44,12 @@ use function PHPSTORM_META\type;
 
                 //validate amount
                 if($_POST['amount'] > $_SESSION['credits'] || $_POST['amount'] < 1){
-                    $_POST['amount_err'] = 'Invalid amount!';
+                    $data['amount_err'] = 'Invalid amount!';
                 }
 
-                //rolling the dice
-                $data['random_number'] = rand(1, 6);
-
                 if(empty($data['amount_err']) && empty($data['chosen_number_err'])){
+                    //rolling the dice
+                    $data['random_number'] = rand(1, 6);
                     //set proper flash message
                     if($data['random_number'] != $data['chosen_number']){
                         flash('gamable_outcome', 'You have choose ' . $data['chosen_number'] . ' and dice roll was ' . $data['random_number'] . ' :( GL next time!', 'alert alert-danger');
