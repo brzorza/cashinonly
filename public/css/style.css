@@ -41,6 +41,23 @@ body{
     color:var(--mint-color) !important;
 }
 
+/* ADMIN PANEL */
+.admin-games-multiplier-input{
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+/* no arrows in input */
+.admin-games-multiplier-input{
+    max-width: 50px !important;
+    -moz-appearance: textfield;
+}
+input.admin-games-multiplier-input::-webkit-outer-spin-button,
+input.admin-games-multiplier-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 /* USER PROFILE */
 .top-profile-border{
     border-radius: 20px 20px 0 0;
