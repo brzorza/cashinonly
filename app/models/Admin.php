@@ -14,7 +14,16 @@ class Admin{
         return $row;
     }
     
-    public function updateGameData(){
-        
+    public function updateGameData($data){
+        $this->db->query('UPDATE games SET multiplier = :multiplier WHERE name = :name');
+
+        $this->db->bind(':multiplier', $data['multiplier']);
+        $this->db->bind(':name', $data['gameName']);
+
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }      
     }
 }

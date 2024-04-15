@@ -7,6 +7,13 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
+          <?php if(isset($_SESSION['status'])) : ?>
+            <?php if(($_SESSION['status'] === 'admin')) :?>
+            <li class="nav-item">
+              <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/admins/welcome') ? 'currently-chosen' : '' ?>" href="<?php echo URLROOT; ?>/admins/welcome">Admin</a>
+            </li>
+            <?php endif ?>
+          <?php endif ?>
           <li class="nav-item">
             <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/pages/about') ? 'currently-chosen' : '' ?>" href="<?php echo URLROOT; ?>/pages/about">About</a>
           </li>
