@@ -26,7 +26,7 @@
                 if(empty($data['multiplier_err'])){
                     if($this->adminModel->updateGameData($data)){
                         //set flash message
-                        flash('update_success', $data['gameName'] . 'multiplier updated successfuly!', 'alert alert-success');
+                        flash('update_success', $data['gameName'] . ' multiplier updated successfuly!', 'alert alert-success');
 
                         //get data after update and render updated view
                         $data = $this->adminModel->getGamesData();
