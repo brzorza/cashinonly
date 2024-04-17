@@ -26,4 +26,13 @@ class Admin{
             return false;
         }      
     }
+    
+    public function getUsersData(){
+        //query
+        $this->db->query('SELECT * FROM users');
+
+        $row = $this->db->resultSet();
+
+        return $row;
+    }
 }

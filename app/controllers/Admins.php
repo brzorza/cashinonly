@@ -44,4 +44,15 @@
                 $this->view('admins/games', $data);
             }
         }
+
+        public function users(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            }else{
+                //get users data
+                $data = $this->adminModel->getUsersData();
+                //casual load
+                $this->view('admins/users', $data);
+            }
+        }
     }
