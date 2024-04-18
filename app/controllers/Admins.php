@@ -48,6 +48,30 @@
         public function users(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+                $data = [
+                    'name' => $_POST['name'],
+                    'status' => $_POST['status'],
+                    'credits' => $_POST['credits'],
+                    'status_err' => '',
+                    'amount_err' => '',
+                ];
+
+                // validating form
+                if(empty($data['status_err']) && empty($data['amount_err'])){
+                    if($this->adminModel->updateUserData($data)){
+                        //set flash message
+                        flash('update_success', $data['name'] . ' info updated successfuly!', 'alert alert-success');
+
+                        //get data after update and render updated view
+                        $data = $this->adminModel->getUsersData();
+                        $this->view('admins/users', $data);
+                    }else{
+                        die('Something went wrong!');
+                    }
+                }else{
+                    $data['credits_err'] = 'Probably wrong credits value, use float!';
+                    $this->view('admins/users', $data);    
+                }
             }else{
                 //get users data
                 $data = $this->adminModel->getUsersData();

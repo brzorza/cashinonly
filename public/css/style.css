@@ -52,10 +52,17 @@ body{
     max-width: 50px !important;
     -moz-appearance: textfield;
 }
+
 input.admin-games-multiplier-input::-webkit-outer-spin-button,
 input.admin-games-multiplier-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.admin-users-status-input {
+    border-radius: 5px;
+    border: 1px solid #fff;
+    padding: 5px 10px;
 }
 
 /* USER PROFILE */
